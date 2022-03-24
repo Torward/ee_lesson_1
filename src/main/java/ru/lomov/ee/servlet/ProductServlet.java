@@ -1,6 +1,6 @@
 package ru.lomov.ee.servlet;
 
-import ru.lomov.ee.model.Televisor;
+import ru.lomov.ee.model.Product;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,33 +10,32 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ProductServlet", urlPatterns = "/category")
+@WebServlet(name = "ProductServlet", urlPatterns = "/product")
 public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("televisor", createProducts());
+        req.setAttribute("product", createProducts());
         getServletContext().getRequestDispatcher("/category.jsp")
                 .forward(req,resp);
     }
 
-    private Televisor createProducts() {
-        List<Televisor> brands = List.of(
-                new Televisor("Samsonite Vision", 55, null),
-                new Televisor("Samsonite Black Square", 60, null),
-                new Televisor("Samsonite Night", 55, null),
-                new Televisor("Samsonite Lite", 36, null),
-                new Televisor("Samsonite Smart", 40, null),
-                new Televisor("Samsonite Integra", 43, null),
-                new Televisor("Samsonite Spectre", 28, null),
-                new Televisor("Samsonite Vector", 36, null),
-                new Televisor("Samsonite Journey", 15, null)
-
+    private Product createProducts() {
+        List<Product>children = List.of(
+                new Product(1,"sausages",12,null),
+                new Product(2,"pasta",102,null),
+                new Product(3,"sugar",250,null),
+                new Product(4,"buckwheat",165,null),
+                new Product(5,"rice",25,null),
+                new Product(6,"butter",250,null),
+                new Product(7,"bread",52,null),
+                new Product(8,"oil",115,null),
+                new Product(9,"potato",84,null),
+                new Product(10,"tomato",168,null)
         );
-        return Televisor.builder()
-                .brand("Samsonite")
-                .diagonal(43)
-                .models(brands)
+        return Product.builder()
+                .title("Products")
+                .children(children)
                 .build();
     }
 }
