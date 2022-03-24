@@ -1,18 +1,20 @@
 
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="ru.lomov.ee.model.Product" %>
+<%@ page import="java.util.List" %>
 <html>
 <head>
-    <title>Category</title>
+    <title>Product</title>
 </head>
 <body>
-<h1>TV</h1>
-<p>Brand: ${televisor.brand}</p>
-<p>Diagonal: ${televisor.diagonal}</p>
-<p>Televisor</p>
+<h1>Cart</h1>
+<p>Title: ${product.title}</p>
+<p>To be paid</p>
 <hr>
 <ul>
-    <% if (((Televisor)request.getAttribute("televisor")).getChildren() != null) %>
-    <% for (Televisor value : (List<Televisor>) ((Televisor)request.getAttribute("televisor")).getChildren()) { %>
-    <li>brand: <%value.getBrand()%>; diagonal: <%value.getValue()%></li>
+    <% if (((Product)request.getAttribute("product")).getChildren() != null) %>
+    <% for (Product value : (List<Product>) ((Product)request.getAttribute("product")).getChildren()) { %>
+    <li>id: <%=value.getId()%>; title: <%=value.getTitle()%>; cost: <%=value.getCost()%></li>
     <% } %>
 </ul>
 </body>
